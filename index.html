@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>afos2000@andreskube:~#</title>
+  <meta name="description" content="DevOps & Platform Engineer — Kubernetes, GitOps, Cloud Native">
+  <meta property="og:title" content="Andres Fortega — DevOps & Platform Engineer">
+  <meta property="og:description" content="Kubernetes, GitOps, and Cloud Native infrastructure.">
+  <meta property="og:url" content="https://cv.andreskube.uk">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14' font-family='monospace' fill='%234ade80'>&#36;</text></svg>">
+</head>
+<body>
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+  <div id="scanlines" aria-hidden="true"></div>
+
+  <header role="banner">
+    <nav role="navigation" aria-label="Terminal navigation">
+      <div class="prompt" id="nav-prompt">
+        <span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span>
+        <span class="cursor blink">█</span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-item" data-cmd="whoami">whoami</a></li>
+        <li><a href="#skills" class="nav-item" data-cmd="skills">skills</a></li>
+        <li><a href="#experience" class="nav-item" data-cmd="history">history</a></li>
+        <li><a href="#projects" class="nav-item" data-cmd="ls">ls</a></li>
+        <li><a href="https://afos2000.github.io" class="nav-item" data-cmd="blog">blog</a></li>
+        <li><a href="#contact" class="nav-item" data-cmd="contact">contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-banner">
+        <pre class="ascii-banner" role="img" aria-label="Andres Fortega ASCII art">  ___    _    _  _    ___   ___  _  _  ___
+ / _ \  /_\  | \| |  / __| / _ \| \| |/ __|
+| (_) |/ _ \ | .` | |\__ \| (_) | .` |\__ \
+ \___//_/ \_\|_|\_| |___/ \___/|_|\_||___/</pre>
+        <p class="tagline"><span class="prompt-inline"><span class="user">guest</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">$</span></span> <span id="typed-text"></span><span class="cursor blink">█</span></p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">whoami</span>
+      </div>
+      <div class="section-body" id="about-body"></div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">skills --verbose</span>
+      </div>
+      <div class="section-body" id="skills-body"></div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">cat ~/.experience</span>
+      </div>
+      <div class="section-body" id="experience-body"></div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">ls -la /projects/</span>
+      </div>
+      <div class="section-body" id="projects-body"></div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">curl -X POST /contact</span>
+      </div>
+      <div class="section-body" id="contact-body"></div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-prompt">
+      <span class="user">afos2000</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~/cv</span><span class="hash">$</span>
+      <span id="footer-command">chmod +x career.sh &amp;&amp; ./career.sh</span>
+      <span class="cursor blink">█</span>
+    </div>
+    <p class="footer-meta">&copy; 2026 — Built with terminal vibes &amp; caffeine</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

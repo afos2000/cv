@@ -1,0 +1,59 @@
+{
+  "site": {
+    "title": "Andres Fortega",
+    "tagline": "DevOps & Platform Engineer",
+    "email": "afortegast@gmail.com",
+    "url": "https://cv.andreskube.uk"
+  },
+  "terminal": {
+    "user": "afos2000",
+    "host": "andreskube",
+    "promptPath": "~",
+    "footerCommand": "chmod +x career.sh"
+  },
+  "social": {
+    "github": "https://github.com/afos2000",
+    "linkedin": "https://linkedin.com/in/afortega"
+  },
+  "about": [
+    "DevOps & Platform Engineer with experience designing, deploying, and maintaining Kubernetes clusters at home and in production.",
+    "I build self-healing infrastructure, automate everything, and believe infrastructure should be version-controlled, repeatable, and boringly stable.",
+    "Currently running a 4-node k3s homelab with GitOps (ArgoCD), Longhorn storage, cert-manager, and full observability — because production should feel like home."
+  ],
+  "skills": [
+    { "category": "Containers & Orchestration", "items": ["Kubernetes", "k3s", "Docker", "Helm", "ArgoCD", "Flux"] },
+    { "category": "Infrastructure as Code", "items": ["Terraform", "Ansible", "Helmfile", "Kustomize"] },
+    { "category": "CI/CD", "items": ["GitHub Actions", "GitLab CI", "Argo Workflows", "Jenkins"] },
+    { "category": "Observability", "items": ["Prometheus", "Grafana", "Loki", "OpenTelemetry"] },
+    { "category": "Service Mesh", "items": ["Linkerd", "Istio"] },
+    { "category": "Cloud", "items": ["AWS", "GCP", "Cloudflare"] },
+    { "category": "Storage", "items": ["Longhorn", "Ceph", "Rook"] },
+    { "category": "Security", "items": ["cert-manager", "Vault", "OPA", "Kyverno"] }
+  ],
+  "experience": [
+    {
+      "role": "DevOps & Platform Engineer",
+      "company": "Current Role",
+      "period": "Present",
+      "highlights": [
+        "Manage production Kubernetes clusters serving 100k+ users",
+        "Designed GitOps workflow with ArgoCD reducing deployment time by 80%",
+        "Built observability stack serving 500k+ metrics series"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "stack",
+      "description": "Home Kubernetes cluster managed entirely through GitOps",
+      "url": "https://github.com/afos2000/stack",
+      "tech": ["k3s", "ArgoCD", "Longhorn", "Terraform"]
+    },
+    {
+      "name": "cv",
+      "description": "This very site — a terminal-themed CV",
+      "url": "https://github.com/afos2000/cv",
+      "tech": ["HTML", "CSS", "JS", "Cloudflare"]
+    }
+  ]
+}
