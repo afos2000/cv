@@ -164,13 +164,13 @@ nav {
 }
 
 /* Terminal colors */
-.user { color: var(--green); }
+.user { color: #00ff00; }
 .at { color: var(--amber); }
 .host { color: var(--cyan); }
 .colon { color: var(--text-secondary); }
 .path { color: var(--blue); }
-.hash { color: var(--red); }
-.cursor { color: var(--green); }
+.hash { color: #00ff00; }
+.cursor { color: #00ff00; }
 
 /* Hero */
 #hero {
@@ -210,8 +210,8 @@ nav {
 
 .ascii-banner {
   color: #00ff00;
-  font-size: 12px;
-  line-height: 1.15;
+  font-size: 16px;
+  line-height: 1.2;
   text-align: center;
   margin-bottom: 24px;
   text-shadow: 0 0 12px rgba(0, 255, 0, 0.6), 0 0 24px rgba(0, 255, 0, 0.3);
