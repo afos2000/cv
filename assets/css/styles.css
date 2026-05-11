@@ -419,6 +419,157 @@ nav {
   color: var(--green);
 }
 
+/* Homelab page */
+.diagram {
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-align: center;
+  overflow-x: auto;
+  white-space: pre;
+  padding: 8px 0;
+}
+
+.nodes-table-wrapper {
+  overflow-x: auto;
+}
+
+.nodes-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.nodes-table th {
+  color: var(--cyan);
+  font-weight: 500;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nodes-table td {
+  color: var(--text-secondary);
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+  font-size: 13px;
+}
+
+.nodes-table tr:hover td {
+  background: rgba(74, 222, 128, 0.02);
+}
+
+.hl-cyan { color: var(--cyan); }
+.hl-amber { color: var(--amber); }
+.hl-green { color: var(--green); }
+.hl-purple { color: var(--purple); }
+
+.components-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comp-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.comp-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.comp-ok {
+  background: rgba(74, 222, 128, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.comp-wip {
+  background: rgba(251, 191, 36, 0.1);
+  color: var(--amber);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.comp-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.comp-item a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.comp-item a:hover {
+  text-decoration: underline;
+}
+
+.network-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.net-section {
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.net-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.step-num {
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  width: 32px;
+  text-align: center;
+}
+
 /* Footer */
 footer {
   border-top: 1px solid var(--border);

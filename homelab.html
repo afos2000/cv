@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>afos2000@andreskube:~/homelab#</title>
+  <meta name="description" content="4-node k3s homelab — GitOps, Longhorn, ArgoCD, Cloudflare Tunnel">
+  <meta property="og:title" content="Homelab — andreskube.uk">
+  <meta property="og:description" content="4-node k3s cluster with GitOps workflow">
+  <meta property="og:url" content="https://cv.andreskube.uk/homelab.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14' font-family='monospace' fill='%234ade80'>&#36;</text></svg>">
+</head>
+<body>
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+  <div id="scanlines" aria-hidden="true"></div>
+
+  <header role="banner">
+    <nav role="navigation" aria-label="Terminal navigation">
+      <div class="prompt">
+        <span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~/homelab</span><span class="hash">#</span>
+        <span class="cursor blink">█</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-item" data-cmd="cd ~">cd ~</a></li>
+        <li><a href="#architecture" class="nav-item" data-cmd="arch">arch</a></li>
+        <li><a href="#nodes" class="nav-item" data-cmd="nodes">nodes</a></li>
+        <li><a href="#components" class="nav-item" data-cmd="components">components</a></li>
+        <li><a href="#network" class="nav-item" data-cmd="network">network</a></li>
+        <li><a href="#gitops" class="nav-item" data-cmd="gitops">gitops</a></li>
+        <li><a href="https://github.com/afos2000/stack" class="nav-item" data-cmd="source">source</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-banner">
+        <pre class="ascii-banner" role="img" aria-label="Homelab ASCII art">  _   _           _          _       _
+ | | | | ___  ___| |__   ___| | __ _| |
+ | |_| |/ _ \/ __| '_ \ / _ \ |/ _` | |
+ |  _  | (_) \__ \ | | |  __/ | (_| | |
+ |_| |_|\___/|___/_| |_|\___|_|\__,_|_|</pre>
+        <p class="tagline"><span class="prompt-inline"><span class="user">guest</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">$</span></span> <span id="typed-text"></span><span class="cursor blink">█</span></p>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">cat docs/architecture.md</span>
+      </div>
+      <div class="section-body">
+        <pre class="diagram" role="img" aria-label="Architecture diagram">
+                        ┌─────────────────────────┐
+                        │    Cloudflare (Edge)     │
+                        │  ┌───────────────────┐   │
+                        │  │  andreskube.uk     │   │
+                        │  │  cv.andreskube.uk  │   │
+                        │  │  argocd.andreskube │   │
+                        │  └───────┬───────────┘   │
+                        └──────────┼───────────────┘
+                                   │ Cloudflare Tunnel
+                         ══════════╪══════════
+                         INTERNET  │  (no open ports)
+                         ══════════╪══════════
+                                   │
+                    ┌──────────────┼──────────────┐
+                    │              │              │
+                    │  ┌───────────┴───────────┐  │
+                    │  │    k3s-master         │  │
+                    │  │  192.168.0.20         │  │
+                    │  │  API / control plane  │  │
+                    │  └───────────┬───────────┘  │
+                    │              │              │
+                    │  ┌───────────┼───────────┐  │
+                    │  │           │           │  │
+                    │  │  ┌────────┴────────┐  │  │
+                    │  │  │  k3s-worker1    │  │  │
+                    │  │  │  192.168.0.21   │  │  │
+                    │  │  └─────────────────┘  │  │
+                    │  │  ┌─────────────────┐  │  │
+                    │  │  │  k3s-worker2    │  │  │
+                    │  │  │  192.168.0.22   │  │  │
+                    │  │  └─────────────────┘  │  │
+                    │  │  ┌─────────────────┐  │  │
+                    │  │  │  ThinkPad P52   │  │  │
+                    │  │  │  192.168.0.52   │  │  │
+                    │  │  └─────────────────┘  │  │
+                    │  │  ─── 192.168.0.0/24 ──│  │
+                    │  └───────────────────────┘  │
+                    │        4-node k3s cluster   │
+                    └─────────────────────────────┘
+        </pre>
+        <p class="about-text">A 4-node k3s cluster running on bare-metal hardware at home. All nodes are connected via a flat Layer 2 network. The control plane runs on the master node; all three workers handle workloads. External access is exclusively via Cloudflare Tunnel — zero open ports on the home router.</p>
+      </div>
+    </section>
+
+    <!-- Nodes -->
+    <section id="nodes" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">kubectl get nodes -o wide</span>
+      </div>
+      <div class="section-body">
+        <div class="nodes-table-wrapper">
+          <table class="nodes-table" role="grid" aria-label="Cluster nodes">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>ROLE</th>
+                <th>IP</th>
+                <th>K3S VER</th>
+                <th>SPEC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="hl-cyan">k3s-master</td>
+                <td>control-plane</td>
+                <td>192.168.0.20</td>
+                <td>v1.31.x</td>
+                <td>4C / 8GB / 120GB</td>
+              </tr>
+              <tr>
+                <td class="hl-cyan">k3s-worker1</td>
+                <td>worker</td>
+                <td>192.168.0.21</td>
+                <td>v1.31.x</td>
+                <td>4C / 8GB / 240GB</td>
+              </tr>
+              <tr>
+                <td class="hl-cyan">k3s-worker2</td>
+                <td>worker</td>
+                <td>192.168.0.22</td>
+                <td>v1.31.x</td>
+                <td>4C / 8GB / 240GB</td>
+              </tr>
+              <tr>
+                <td class="hl-cyan">thinkpad-p52</td>
+                <td>worker</td>
+                <td>192.168.0.52</td>
+                <td>v1.34.5</td>
+                <td>8C / 32GB / 500GB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section id="components" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">helm list -A</span>
+      </div>
+      <div class="section-body">
+        <div class="components-list">
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">k3s</span> — Lightweight Kubernetes distribution. Embedded etcd, traefik ingress, CoreDNS.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">ArgoCD</span> — GitOps deployment engine. All cluster state defined in <a href="https://github.com/afos2000/stack" target="_blank">github.com/afos2000/stack</a>.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">Longhorn</span> — Cloud-native distributed block storage. Replicated volumes across workers.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">cert-manager</span> — Internal CA for cluster TLS. Manages cert issuance and renewal.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">MetalLB</span> — Bare-metal load balancer for on-prem services.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">kube-router</span> — Network policy enforcement via iptables/nftables.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">Reflector</span> — Replicate secrets/configmaps across namespaces automatically.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-ok">✓</div><div><span class="comp-name">Reloader</span> — Rolling restarts pods when ConfigMaps/Secrets change.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-wip">~</div><div><span class="comp-name">Cloudflare Tunnel</span> — Secure outbound-only tunnel for external access. WIP.</div></div>
+          <div class="comp-item"><div class="comp-icon comp-wip">~</div><div><span class="comp-name">Linkerd</span> — Service mesh for mTLS and observability. Planned.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Network -->
+    <section id="network" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">cat /etc/cni/net.d/kube-router.conf</span>
+      </div>
+      <div class="section-body">
+        <div class="network-summary">
+          <div class="net-section">
+            <p class="net-title hl-cyan"># Network stack</p>
+            <p class="about-text">kube-router handles both pod networking (CNI) and NetworkPolicy enforcement. Each pod gets a unique IP from the cluster CIDR. Network policies follow a default-deny model — only explicitly allowed ingress/egress is permitted.</p>
+          </div>
+          <div class="net-section">
+            <p class="net-title hl-amber"># External access</p>
+            <p class="about-text">Cloudflare Tunnel creates an encrypted outbound connection from the cluster to Cloudflare's edge. DNS records with proxy enabled (orange cloud) route traffic through Cloudflare's network, eliminating the need for any open firewall ports. Cloudflare Access adds SSO authentication in front of sensitive services like ArgoCD.</p>
+          </div>
+          <div class="net-section">
+            <p class="net-title hl-green"># TLS termination</p>
+            <p class="about-text">Cloudflare edge terminates external TLS with auto-managed certificates. Internal traffic uses cert-manager with an internal CA for cluster-internal TLS. Forward mTLS (planned via Linkerd) will encrypt traffic between pods.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitOps Workflow -->
+    <section id="gitops" class="section">
+      <div class="section-header">
+        <span class="prompt-inline"><span class="user">root</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~</span><span class="hash">#</span></span>
+        <span class="cmd">cat docs/gitops-workflow.md</span>
+      </div>
+      <div class="section-body">
+        <pre class="diagram" role="img" aria-label="GitOps workflow">
+          ┌──────────┐     push      ┌────────────┐
+          │  Dev PC  │ ──────────▶   │   GitHub   │
+          │  (you)   │              │ afos2000/  │
+          └──────────┘              │   stack    │
+                                    └─────┬──────┘
+                                          │ poll / webhook
+                                          ▼
+                                    ┌────────────┐
+                                    │  ArgoCD    │
+                                    │ Apps of    │
+                                    │ Apps pattern│
+                                    └──────┬─────┘
+                                           │
+                     ┌─────────────────────┼──────────────────┐
+                     │                     │                  │
+                     ▼                     ▼                  ▼
+               ┌──────────┐         ┌──────────┐       ┌──────────┐
+               │  argocd  │         │ longhorn │       │  cert-   │
+               │          │         │  system  │       │ manager  │
+               └──────────┘         └──────────┘       └──────────┘
+                     │                     │                  │
+                     ▼                     ▼                  ▼
+               ┌──────────┐         ┌──────────┐       ┌──────────┐
+               │   argo   │         │  metallb │       │  k8s-    │
+               │          │         │          │       │ objects  │
+               └──────────┘         └──────────┘       └──────────┘
+        </pre>
+        <div class="workflow-steps">
+          <div class="step">
+            <span class="step-num hl-purple">01</span>
+            <div><span class="hl-cyan">Push to main</span> — All cluster configuration lives in a single Git repository. Every change starts with a pull request or direct push.</div>
+          </div>
+          <div class="step">
+            <span class="step-num hl-purple">02</span>
+            <div><span class="hl-cyan">ArgoCD detects drift</span> — ArgoCD polls the Git repo (or receives webhooks). When it sees the desired state diverges from the live cluster, it reconciles.</div>
+          </div>
+          <div class="step">
+            <span class="step-num hl-purple">03</span>
+            <div><span class="hl-cyan">Apps of Apps</span> — A root ApplicationSet defines the entire cluster. Each component (Longhorn, cert-manager, etc.) is an ArgoCD Application managed by the parent.</div>
+          </div>
+          <div class="step">
+            <span class="step-num hl-purple">04</span>
+            <div><span class="hl-cyan">Self-healing</span> — If someone makes a manual change via kubectl, ArgoCD reverts it to match the repo within the sync interval.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-prompt">
+      <span class="user">afos2000</span><span class="at">@</span><span class="host">andreskube</span><span class="colon">:</span><span class="path">~/homelab</span><span class="hash">$</span>
+      <span>cat README.md | pbcopy</span>
+      <span class="cursor blink">█</span>
+    </div>
+    <p class="footer-meta">&copy; 2026 — Built with terminal vibes &amp; caffeine</p>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Matrix Rain
+      function initMatrix() {
+        const canvas = document.getElementById('matrix-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width, height, columns, drops;
+        function resize() {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width;
+          canvas.height = height;
+          columns = Math.floor(width / 16);
+          drops = Array(columns).fill(0).map(() => Math.random() * -100);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        const chars = '01{}[]<>/\\|;:=+-*';
+        function draw() {
+          ctx.fillStyle = 'rgba(10, 14, 23, 0.05)';
+          ctx.fillRect(0, 0, width, height);
+          ctx.font = '14px monospace';
+          for (let i = 0; i < drops.length; i++) {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            const x = i * 16;
+            const y = drops[i] * 14;
+            ctx.fillStyle = y > height * 0.75 ? 'rgba(74, 222, 128, 0.3)' : 'rgba(74, 222, 128, 0.1)';
+            ctx.fillText(char, x, y);
+            if (y > height && Math.random() > 0.975) drops[i] = 0;
+            drops[i] += 0.5 + Math.random() * 0.5;
+          }
+          requestAnimationFrame(draw);
+        }
+        draw();
+      }
+
+      // Typewriter
+      function typewriter(el, text, speed) {
+        let i = 0;
+        el.textContent = '';
+        function type() {
+          if (i < text.length) {
+            el.textContent += text[i];
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      }
+
+      // Smooth scroll
+      document.querySelectorAll('.nav-item[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // Key bindings (1-7)
+      document.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        var num = parseInt(e.key);
+        if (num >= 1 && num <= 7) {
+          var links = document.querySelectorAll('.nav-item');
+          var idx = num - 1;
+          if (links[idx]) { links[idx].click(); links[idx].focus(); }
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        initMatrix();
+        var typed = document.getElementById('typed-text');
+        if (typed) typewriter(typed, '4-node k3s homelab — GitOps, storage, and Cloudflare Tunnel', 35);
+      });
+    })();
+  </script>
+</body>
+</html>

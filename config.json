@@ -54,6 +54,12 @@
       "description": "This very site — a terminal-themed CV",
       "url": "https://github.com/afos2000/cv",
       "tech": ["HTML", "CSS", "JS", "Cloudflare"]
+    },
+    {
+      "name": "homelab",
+      "description": "Deep dive into the 4-node k3s cluster architecture and components",
+      "url": "https://cv.andreskube.uk/homelab.html",
+      "tech": ["k3s", "ArgoCD", "Longhorn", "Cloudflare"]
     }
   ]
 }

@@ -201,7 +201,7 @@
     document.addEventListener('keydown', function (e) {
       if (e.altKey || e.ctrlKey || e.metaKey) return;
       const num = parseInt(e.key);
-      if (num >= 1 && num <= 6) {
+      if (num >= 1 && num <= 7) {
         const links = document.querySelectorAll('.nav-item');
         const idx = num - 1;
         if (links[idx]) {
