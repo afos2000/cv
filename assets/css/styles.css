@@ -180,6 +180,34 @@ nav {
   text-align: center;
 }
 
+.hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.hero-user {
+  color: #00ff00;
+  text-shadow: 0 0 12px rgba(0, 255, 0, 0.6), 0 0 24px rgba(0, 255, 0, 0.3);
+}
+
+.hero-at {
+  color: var(--amber);
+}
+
+.hero-host {
+  color: var(--cyan);
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
 .ascii-banner {
   color: #00ff00;
   font-size: 12px;
