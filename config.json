@@ -16,37 +16,80 @@
     "linkedin": "https://www.linkedin.com/in/andres-ortega-97435535/"
   },
   "about": [
-    "Platform Engineer with extensive experience in high-security, large-scale infrastructure, managing and optimizing Kubernetes clusters across production and homelab environments.",
-    "Certified Kubernetes Administrator (CKA), Certified Kubernetes Application Developer (CKAD), Certified Kubernetes Security Specialist (CKS), and pursuing KubeAstronaut from the Linux Foundation.",
-    "Background in MLOps — automating and scaling ML pipelines. Currently building and maintaining robust platforms that meet the stringent demands of modern enterprises.",
-    "Operating a 4-node k3s homelab with GitOps (ArgoCD), Longhorn, and Cloudflare Tunnel — because production should feel like home."
+    "Platform Engineer with deep expertise in high-security, large-scale Kubernetes infrastructure. Transitioned from MLOps — now building and hardening platforms that meet the demands of modern enterprises.",
+    "Certified Kubernetes Administrator (CKA), Application Developer (CKAD), Security Specialist (CKS), and pursuing KubeAstronaut.",
+    "Background in ML pipeline automation, solar energy data analytics, and oilfield engineering. Fluent in Spanish, English, and German.",
+    "Also running a 4-node k3s homelab with GitOps (ArgoCD), Longhorn, and Cloudflare Tunnel — because production should feel like home."
   ],
   "skills": [
     { "category": "Orchestration", "items": ["Kubernetes", "k3s", "Docker", "Helm", "ArgoCD", "Argo Workflows"] },
+    { "category": "CI/CD", "items": ["GitLab CI", "GitHub Actions", "ArgoCD", "Argo Workflows", "Jenkins"] },
+    { "category": "Machine Learning", "items": ["MLOps", "ML Pipelines", "Anomaly Detection", "Autoencoders", "Scikit-learn"] },
     { "category": "Infrastructure as Code", "items": ["Terraform", "Ansible", "Helmfile", "Kustomize"] },
-    { "category": "CI/CD", "items": ["GitLab CI", "GitHub Actions", "ArgoCD", "Jenkins", "Argo Workflows"] },
-    { "category": "Machine Learning", "items": ["MLOps", "ML Pipelines", "Kubeflow", "Model Serving"] },
     { "category": "Observability", "items": ["Prometheus", "Grafana", "Loki", "OpenTelemetry"] },
     { "category": "Cloud & Edge", "items": ["AWS", "GCP", "Cloudflare"] },
+    { "category": "Security", "items": ["CKS", "cert-manager", "Vault", "OPA", "Kyverno"] },
     { "category": "Storage", "items": ["Longhorn", "Ceph", "Rook"] },
-    { "category": "Security", "items": ["cert-manager", "Vault", "OPA", "Kyverno", "CKS"] },
-    { "category": "Certifications", "items": ["CKA", "CKAD", "CKS", "Kubeastronaut (in progress)"] }
+    { "category": "Certifications", "items": ["CKA", "CKAD", "CKS", "Kubeastronaut"] }
   ],
-  "certifications": ["CKA", "CKAD", "CKS"],
-  "kubeastronaut": true,
   "experience": [
     {
       "role": "Platform Engineer",
-      "company": "Current Role",
-      "period": "Present",
+      "company": "MIC Customs Solutions",
+      "period": "Sep 2024 \u2014 Present",
       "highlights": [
-        "Manage and optimize large-scale Kubernetes clusters in high-security environments",
-        "Design and maintain CI/CD pipelines using GitLab CI, Argo Workflows, and GitHub Actions",
-        "Transitioned from MLOps — automating ML training and inference pipelines at scale",
-        "Operate a 4-node k3s homelab with full GitOps workflow (ArgoCD, Longhorn, cert-manager)"
+        "Manage and optimize Kubernetes clusters in high-security, large-scale infrastructure environments",
+        "Design and maintain CI/CD pipelines ensuring stability, scalability, and compliance",
+        "Build robust internal platforms empowering teams to deploy efficiently and effectively"
+      ]
+    },
+    {
+      "role": "Data Scientist",
+      "company": "Fronius International",
+      "period": "Feb 2023 \u2014 Sep 2024",
+      "highlights": [
+        "Developed ML models for solar energy data analysis and automation",
+        "Built and scaled data pipelines for energy monitoring systems"
+      ]
+    },
+    {
+      "role": "Data Analyst \u2014 Solar Energy",
+      "company": "Fronius International",
+      "period": "Jul 2019 \u2014 Feb 2023",
+      "highlights": [
+        "Analyzed solar energy production data across large-scale photovoltaic installations",
+        "Developed Python-based tools for automated reporting and visualization",
+        "Improved data quality and processing pipelines for energy monitoring"
+      ]
+    },
+    {
+      "role": "Research Assistant",
+      "company": "Fraunhofer IEE",
+      "period": "Mar 2018 \u2014 Jun 2019",
+      "highlights": [
+        "Generated models for reduction of corrective maintenance using neural networks",
+        "Prepared data analysis for WindPool stakeholders",
+        "Developed Python scripts for data mining and database labeling"
+      ]
+    },
+    {
+      "role": "Fluids Service Representative III",
+      "company": "Halliburton",
+      "period": "Jun 2011 \u2014 Feb 2015",
+      "highlights": [
+        "Provided engineering support and managed field operations for oilfield fluid services",
+        "Managed inventories and supervised field personnel"
       ]
     }
   ],
+  "publications": [
+    {
+      "title": "Evaluation of Anomaly Detection of an Autoencoder Based on Maintenance Information and SCADA-Data",
+      "journal": "MDPI Energies",
+      "url": "https://www.mdpi.com/1996-1073/13/5/1063"
+    }
+  ],
+  "languages": ["Spanish (native)", "English (fluent)", "German (professional)"],
   "projects": [
     {
       "name": "stack",
@@ -56,7 +99,7 @@
     },
     {
       "name": "cv",
-      "description": "This very site — a terminal-themed CV",
+      "description": "This very site \u2014 a terminal-themed CV",
       "url": "https://github.com/afos2000/cv",
       "tech": ["HTML", "CSS", "JS", "Cloudflare"]
     },

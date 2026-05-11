@@ -144,6 +144,26 @@
       ).join('')}</div>`;
     }
 
+    // Publications
+    const pubsBody = document.getElementById('publications-body');
+    if (pubsBody && config.publications && config.publications.length) {
+      pubsBody.innerHTML = config.publications.map(p =>
+        `<div class="pub-item">
+          <div class="pub-title">${p.title}</div>
+          <div class="pub-journal">${p.journal}</div>
+          ${p.url ? `<a href="${p.url}" class="pub-link" target="_blank" rel="noopener noreferrer"><span class="arrow">></span> paper</a>` : ''}
+        </div>`
+      ).join('');
+    }
+
+    // Languages
+    const langBody = document.getElementById('languages-body');
+    if (langBody && config.languages && config.languages.length) {
+      langBody.innerHTML = `<div class="lang-list">${config.languages.map(l =>
+        `<span class="lang-tag">${l}</span>`
+      ).join('')}</div>`;
+    }
+
     // Contact
     const contactBody = document.getElementById('contact-body');
     if (contactBody) {
