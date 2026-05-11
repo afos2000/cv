@@ -38,8 +38,8 @@
         const y = drops[i] * fontSize;
 
         ctx.fillStyle = drops[i] * fontSize > height * 0.75
-          ? 'rgba(74, 222, 128, 0.3)'
-          : 'rgba(74, 222, 128, 0.1)';
+          ? 'rgba(0, 255, 0, 0.5)'
+          : 'rgba(0, 255, 0, 0.2)';
         ctx.fillText(char, x, y);
 
         if (y > height && Math.random() > 0.975) {

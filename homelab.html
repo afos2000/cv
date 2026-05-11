@@ -57,45 +57,44 @@
       </div>
       <div class="section-body">
         <pre class="diagram" role="img" aria-label="Architecture diagram">
-                        ┌─────────────────────────┐
-                        │    Cloudflare (Edge)     │
-                        │  ┌───────────────────┐   │
-                        │  │  andreskube.uk     │   │
-                        │  │  cv.andreskube.uk  │   │
-                        │  │  argocd.andreskube │   │
-                        │  └───────┬───────────┘   │
-                        └──────────┼───────────────┘
-                                   │ Cloudflare Tunnel
+                         ┌─────────────────────────┐
+                         │    Cloudflare (Edge)     │
+                         │  ┌───────────────────┐   │
+                         │  │  *.andreskube.uk   │   │
+                         │  │  (DNS proxied)     │   │
+                         │  └───────┬───────────┘   │
+                         └──────────┼───────────────┘
+                                    │ Cloudflare Tunnel
                          ══════════╪══════════
-                         INTERNET  │  (no open ports)
+                         INTERNET  │  (zero-trust)
                          ══════════╪══════════
-                                   │
-                    ┌──────────────┼──────────────┐
-                    │              │              │
-                    │  ┌───────────┴───────────┐  │
-                    │  │    k3s-master         │  │
-                    │  │  192.168.0.20         │  │
-                    │  │  API / control plane  │  │
-                    │  └───────────┬───────────┘  │
-                    │              │              │
-                    │  ┌───────────┼───────────┐  │
-                    │  │           │           │  │
-                    │  │  ┌────────┴────────┐  │  │
-                    │  │  │  k3s-worker1    │  │  │
-                    │  │  │  192.168.0.21   │  │  │
-                    │  │  └─────────────────┘  │  │
-                    │  │  ┌─────────────────┐  │  │
-                    │  │  │  k3s-worker2    │  │  │
-                    │  │  │  192.168.0.22   │  │  │
-                    │  │  └─────────────────┘  │  │
-                    │  │  ┌─────────────────┐  │  │
-                    │  │  │  ThinkPad P52   │  │  │
-                    │  │  │  192.168.0.52   │  │  │
-                    │  │  └─────────────────┘  │  │
-                    │  │  ─── 192.168.0.0/24 ──│  │
-                    │  └───────────────────────┘  │
-                    │        4-node k3s cluster   │
-                    └─────────────────────────────┘
+                                    │
+                     ┌──────────────┼──────────────┐
+                     │              │              │
+                     │  ┌───────────┴───────────┐  │
+                     │  │    k3s-control-plane  │  │
+                     │  │  API server :6443     │  │
+                     │  │  etcd / scheduler     │  │
+                     │  └───────────┬───────────┘  │
+                     │              │              │
+                     │  ┌───────────┼───────────┐  │
+                     │  │           │           │  │
+                     │  │  ┌────────┴────────┐  │  │
+                     │  │  │  worker-0       │  │  │
+                     │  │  │  (workloads)    │  │  │
+                     │  │  └─────────────────┘  │  │
+                     │  │  ┌─────────────────┐  │  │
+                     │  │  │  worker-1       │  │  │
+                     │  │  │  (workloads)    │  │  │
+                     │  │  └─────────────────┘  │  │
+                     │  │  ┌─────────────────┐  │  │
+                     │  │  │  worker-2       │  │  │
+                     │  │  │  (workloads)    │  │  │
+                     │  │  └─────────────────┘  │  │
+                     │  └───────────────────────┘  │
+                     │   4-node k3s cluster        │
+                     │   (bare-metal, LAN)         │
+                     └─────────────────────────────┘
         </pre>
         <p class="about-text">A 4-node k3s cluster running on bare-metal hardware at home. All nodes are connected via a flat Layer 2 network. The control plane runs on the master node; all three workers handle workloads. External access is exclusively via Cloudflare Tunnel — zero open ports on the home router.</p>
       </div>
@@ -295,7 +294,7 @@
             const char = chars[Math.floor(Math.random() * chars.length)];
             const x = i * 16;
             const y = drops[i] * 14;
-            ctx.fillStyle = y > height * 0.75 ? 'rgba(74, 222, 128, 0.3)' : 'rgba(74, 222, 128, 0.1)';
+            ctx.fillStyle = y > height * 0.75 ? 'rgba(0, 255, 0, 0.5)' : 'rgba(0, 255, 0, 0.2)';
             ctx.fillText(char, x, y);
             if (y > height && Math.random() > 0.975) drops[i] = 0;
             drops[i] += 0.5 + Math.random() * 0.5;
