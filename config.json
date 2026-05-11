@@ -30,7 +30,7 @@
     { "category": "Cloud & Edge", "items": ["AWS", "GCP", "Cloudflare"] },
     { "category": "Security", "items": ["CKS", "cert-manager", "Vault", "OPA", "Kyverno"] },
     { "category": "Storage", "items": ["Longhorn", "Ceph", "Rook"] },
-    { "category": "Certifications", "items": ["CKA", "CKAD", "CKS", "Kubeastronaut"] }
+    { "category": "Certifications", "items": ["Kubeastronaut", "CKA", "CKAD", "CKS"] }
   ],
   "experience": [
     {
