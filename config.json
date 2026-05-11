@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Andres Ortega",
-    "tagline": "Platform Engineer | CKA | CKAD | CKS | Kubeastronaut",
+    "tagline": "Platform Engineer | Kubestronaut | CKA | CKAD | CKS",
     "email": "afortegast@gmail.com",
     "url": "https://cv.andreskube.uk"
   },
@@ -17,7 +17,7 @@
   },
   "about": [
     "Platform Engineer with deep expertise in high-security, large-scale Kubernetes infrastructure. Transitioned from MLOps — now building and hardening platforms that meet the demands of modern enterprises.",
-    "Certified Kubernetes Administrator (CKA), Application Developer (CKAD), Security Specialist (CKS), and pursuing KubeAstronaut.",
+    "Kubestronaut — CNCF's highest Kubernetes distinction. Also CKA, CKAD, CKS, KCNA, KCSA certified.",
     "Background in ML pipeline automation, solar energy data analytics, and oilfield engineering. Fluent in Spanish, English, and German.",
     "Also running a 4-node k3s homelab with GitOps (ArgoCD), Longhorn, and Cloudflare Tunnel — because production should feel like home."
   ],
@@ -30,7 +30,7 @@
     { "category": "Cloud & Edge", "items": ["AWS", "GCP", "Cloudflare"] },
     { "category": "Security", "items": ["CKS", "cert-manager", "Vault", "OPA", "Kyverno"] },
     { "category": "Storage", "items": ["Longhorn", "Ceph", "Rook"] },
-    { "category": "Certifications", "items": ["Kubeastronaut", "CKA", "CKAD", "CKS"] }
+    { "category": "Certifications", "items": ["Kubeastronaut", "CKA", "CKAD", "CKS", "KCNA", "KCSA"] }
   ],
   "experience": [
     {
