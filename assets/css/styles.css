@@ -660,10 +660,93 @@ nav {
 .hl-green { color: var(--green); }
 .hl-purple { color: var(--purple); }
 
-.comp-scroll {
+.helm-table-wrapper {
+  overflow-x: auto;
+}
+
+.helm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.helm-table th {
+  color: var(--purple);
+  font-weight: 500;
+  text-align: left;
+  padding: 10px 20px 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.helm-table td {
+  padding: 10px 20px 10px 16px;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.4);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.helm-table tr:hover td {
+  background: rgba(74, 222, 128, 0.02);
+}
+
+.helm-table .ns {
+  color: var(--text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.helm-table td.hl-cyan {
+  white-space: nowrap;
+}
+
+.helm-table .desc {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.helm-table .desc a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.helm-table .desc a:hover {
+  text-decoration: underline;
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status.deployed {
+  color: #00ff00;
+  background: rgba(0, 255, 0, 0.08);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.status.wip {
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.helm-legend {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  gap: 24px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.helm-legend .status {
+  display: inline;
 }
 
 .comp {

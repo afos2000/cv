@@ -147,13 +147,18 @@
     // Publications
     const pubsBody = document.getElementById('publications-body');
     if (pubsBody && config.publications && config.publications.length) {
-      pubsBody.innerHTML = config.publications.map(p =>
-        `<div class="pub-item">
-          <div class="pub-title">${p.title}</div>
-          <div class="pub-journal">${p.journal}</div>
-          ${p.url ? `<a href="${p.url}" class="pub-link" target="_blank" rel="noopener noreferrer"><span class="arrow">></span> paper</a>` : ''}
-        </div>`
-      ).join('');
+      var pubsHtml = '';
+      for (var pi = 0; pi < config.publications.length; pi++) {
+        var p = config.publications[pi];
+        pubsHtml += '<div class="pub-item">';
+        pubsHtml += '<div class="pub-title">' + p.title + '</div>';
+        pubsHtml += '<div class="pub-journal">' + p.journal + '</div>';
+        if (p.url) {
+          pubsHtml += '<a href="' + p.url + '" class="pub-link" target="_blank" rel="noopener noreferrer"><span class="arrow">></span> paper</a>';
+        }
+        pubsHtml += '</div>';
+      }
+      pubsBody.innerHTML = pubsHtml;
     }
 
     // Languages
