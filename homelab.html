@@ -159,33 +159,61 @@
         <span class="cmd">helm list -A</span>
       </div>
       <div class="section-body">
-        <div class="helm-table-wrapper">
-          <table class="helm-table" role="grid" aria-label="Helm releases">
-            <thead>
-              <tr>
-                <th>NAMESPACE</th>
-                <th>NAME</th>
-                <th>STATUS</th>
-                <th>DESCRIPTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td class="ns">kube-system</td><td class="hl-cyan">k3s</td><td><span class="status deployed">deployed</span></td><td class="desc">Lightweight K8s distribution — embedded etcd, traefik, CoreDNS</td></tr>
-              <tr><td class="ns">argocd</td><td class="hl-cyan">argocd</td><td><span class="status deployed">deployed</span></td><td class="desc">GitOps engine. Desired state in <a href="https://github.com/afos2000/stack" target="_blank">github.com/afos2000/stack</a></td></tr>
-              <tr><td class="ns">longhorn-system</td><td class="hl-cyan">longhorn</td><td><span class="status deployed">deployed</span></td><td class="desc">Distributed block storage — replicated volumes across workers</td></tr>
-              <tr><td class="ns">cert-manager</td><td class="hl-cyan">cert-manager</td><td><span class="status deployed">deployed</span></td><td class="desc">Internal CA for cluster TLS — auto-issuance &amp; renewal</td></tr>
-              <tr><td class="ns">metallb</td><td class="hl-cyan">metallb</td><td><span class="status deployed">deployed</span></td><td class="desc">Bare-metal LoadBalancer — IP pool for on-prem services</td></tr>
-              <tr><td class="ns">kube-system</td><td class="hl-cyan">kube-router</td><td><span class="status deployed">deployed</span></td><td class="desc">CNI + NetworkPolicy — iptables/nftables enforcement</td></tr>
-              <tr><td class="ns">reflector</td><td class="hl-cyan">reflector</td><td><span class="status deployed">deployed</span></td><td class="desc">Auto-copy Secrets &amp; ConfigMaps across namespaces</td></tr>
-              <tr><td class="ns">reloader</td><td class="hl-cyan">reloader</td><td><span class="status deployed">deployed</span></td><td class="desc">Rolling restart on ConfigMap/Secret changes</td></tr>
-              <tr><td class="ns">cloudflare-tunnel</td><td class="hl-cyan">cloudflared</td><td><span class="status wip">pending</span></td><td class="desc">Outbound-only tunnel to Cloudflare edge — zero open ports</td></tr>
-              <tr><td class="ns">linkerd</td><td class="hl-cyan">linkerd</td><td><span class="status wip">pending</span></td><td class="desc">Service mesh — mTLS, observability, planned</td></tr>
-            </tbody>
-          </table>
+        <div class="comp-scroll">
+          <div class="comp comp-ok">
+            <span class="comp-ns">kube-system</span>
+            <span class="comp-name">k3s</span>
+            <span class="comp-desc">embedded etcd, traefik ingress, CoreDNS</span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">argocd</span>
+            <span class="comp-name">argocd</span>
+            <span class="comp-desc">GitOps — <a href="https://github.com/afos2000/stack" target="_blank">github.com/afos2000/stack</a></span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">longhorn-system</span>
+            <span class="comp-name">longhorn</span>
+            <span class="comp-desc">distributed block storage, replicated volumes</span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">cert-manager</span>
+            <span class="comp-name">cert-manager</span>
+            <span class="comp-desc">internal CA, auto TLS issuance &amp; renewal</span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">metallb</span>
+            <span class="comp-name">metallb</span>
+            <span class="comp-desc">bare-metal LoadBalancer, IP pool</span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">kube-system</span>
+            <span class="comp-name">kube-router</span>
+            <span class="comp-desc">CNI + NetworkPolicy, iptables/nftables</span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">reflector</span>
+            <span class="comp-name">reflector</span>
+            <span class="comp-desc">auto-copy Secrets &amp; ConfigMaps across namespaces</span>
+          </div>
+          <div class="comp comp-ok">
+            <span class="comp-ns">reloader</span>
+            <span class="comp-name">reloader</span>
+            <span class="comp-desc">rolling restart on ConfigMap/Secret changes</span>
+          </div>
+          <div class="comp comp-wip">
+            <span class="comp-ns">cloudflare-tunnel</span>
+            <span class="comp-name">cloudflared</span>
+            <span class="comp-desc">outbound-only tunnel, zero-trust ingress</span>
+          </div>
+          <div class="comp comp-wip">
+            <span class="comp-ns">linkerd</span>
+            <span class="comp-name">linkerd</span>
+            <span class="comp-desc">service mesh, mTLS, observability</span>
+          </div>
         </div>
         <div class="helm-legend">
-          <span><span class="status deployed">deployed</span> = installed &amp; running</span>
-          <span><span class="status wip">pending</span> = planned / in progress</span>
+          <span class="status-green">●</span> deployed
+          <span class="status-amber">●</span> planned
         </div>
       </div>
     </section>
